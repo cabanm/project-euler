@@ -7,29 +7,17 @@ def timeIt(code):
 	exec code
 	return time()-start
 
-# Find primes up to a certain number and output a list of them as strings
+# Find primes up to a certain number and output a dictionary with them as keys
 def primes(top):
-	sieve = range(2, top+1)
-	for m in range(2, top+1):
-		for n in range(m, top//m+1):
-			p = m*n
-			if p<=top: sieve[p-2] = 0
-	primes = []
-	for i in range(top-1):
-		if sieve[i] != 0: primes.append(str(sieve[i]))
-	return primes
-
-# Find primes up to a certain number and output a list of them as numbers
-def primesNum(top):
 	sieve = [0]*top
 	for m in range(2, top+1):
 		if sieve[m-1] == 0: # if m prime
 			for n in range(m, top//m+1):
 				p = m*n
 				sieve[p-1] = 1
-	primes = []
-	for i in range(2,top+1):
-		if sieve[i-1] == 0: primes.append(i)
+	primes = {}
+	for n in range(2,top+1):
+		if sieve[n-1] == 0: primes[n] = 0
 	return primes
 
 # Find Pythagorean triplets with short sides up to and equal to max side
